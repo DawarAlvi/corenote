@@ -4,13 +4,15 @@ const VERSION = "v1";
 // The name of the cache
 const CACHE_NAME = `period-tracker-${VERSION}`;
 
+const URL = "https://dawaralvi.github.io/corenote";
+
 // The static resources that the app needs to function.
 const APP_STATIC_RESOURCES = [
-  "/",
-  "/index.html",
-  "/app.js",
-  "/style.css",
-  "/icons/512.png",
+  URL + "/",
+  URL + "/index.html",
+  URL + "/app.js",
+  URL + "/style.css",
+  URL + "/icons/512.png",
 ];
 
 // On install, cache the static resources
