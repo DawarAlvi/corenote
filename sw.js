@@ -4,15 +4,15 @@ const VERSION = "v1";
 // The name of the cache
 const CACHE_NAME = `period-tracker-${VERSION}`;
 
-const URL = "https://dawaralvi.github.io/corenote";
+const SUBPATH = "/corenote";
 
 // The static resources that the app needs to function.
 const APP_STATIC_RESOURCES = [
-  URL + "/",
-  URL + "/index.html",
-  URL + "/app.js",
-  URL + "/style.css",
-  URL + "/icons/512.png",
+  SUBPATH + "/",
+  SUBPATH + "/index.html",
+  SUBPATH + "/app.js",
+  SUBPATH + "/style.css",
+  SUBPATH + "/icons/512.png",
 ];
 
 // On install, cache the static resources
@@ -48,7 +48,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   // As a single page app, direct app to always go to cached home page.
   if (event.request.mode === "navigate") {
-    event.respondWith(caches.match("/"));
+    event.respondWith(caches.match(SUBPATH + "/"));
     return;
   }
 
