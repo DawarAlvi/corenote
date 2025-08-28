@@ -1,20 +1,25 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/png" href="/icons/16.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="manifest" href="manifest.json" />
-  <link rel="stylesheet" href="style.css" />
-  <title>CoreNote</title>
+  <title>Core Note</title>
 </head>
+
 <body>
-  <h1>Hello CoreNote App!!</h1>
-  <script src="app.js" defer></script>
-  <!-- Register the app's service worker. -->
+  <div id="app">
+    <h1>Core Note</h1>
+  </div>
+  
+  <script type="module" src="/src/js/main.js"></script>
   <script>
     if ("serviceWorker" in navigator) {
-      navigator.serviceWorker.register("sw.js");
+      navigator.serviceWorker.register("/src/js/worker.js");
     }
   </script>
 </body>
+
 </html>
