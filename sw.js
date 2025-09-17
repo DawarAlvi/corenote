@@ -16,6 +16,7 @@ const APP_STATIC_RESOURCES = [
 
 // On install, cache the static resources
 self.addEventListener("install", (event) => {
+  self.skipWaiting();
   event.waitUntil(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
@@ -47,7 +48,7 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   // As a single page app, direct app to always go to cached home page.
   if (event.request.mode === "navigate") {
-    event.respondWith(caches.match("/"));
+    event.respondWith(caches.match("/index.html"));
     return;
   }
 
@@ -55,13 +56,18 @@ self.addEventListener("fetch", (event) => {
   event.respondWith(
     (async () => {
       const cache = await caches.open(CACHE_NAME);
-      const cachedResponse = await cache.match(event.request.url);
+      const cachedResponse = await cache.match(event.request);
       if (cachedResponse) {
         // Return the cached response if it's available.
         return cachedResponse;
       }
-      // If resource isn't in the cache, return a 404.
-      return new Response(null, { status: 404 });
+      // If resource isn't in the cache, try to fetch from server.
+      try {
+  const networkResponse = await fetch(event.request);
+  return networkResponse;
+} catch (e) {
+  return new Response("Offline", { status: 503 });
+}
     })(),
   );
 });
