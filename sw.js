@@ -1,13 +1,14 @@
 // The version of the cache.
-const VERSION = "v0.0.2a";
+const VERSION = "v0.0.4a";
 
 // The name of the cache
-const CACHE_NAME = `period-tracker-${VERSION}`;
+const CACHE_NAME = `corenote-${VERSION}`;
 
 // The static resources that the app needs to function.
 const APP_STATIC_RESOURCES = [
-  "/",
   "/index.html",
+  "/manifest.json",
+  "/favicon.ico",
   "/app.js",
   "/style.css",
   "/icons/512.png",
